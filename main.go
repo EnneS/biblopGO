@@ -3,6 +3,7 @@ package main
 import (
 	"biblopGO/bot"
 	"fmt"
+	"os"
 
 	"github.com/ennes/disgo"
 
@@ -16,16 +17,13 @@ var (
 var LastChannel string
 
 func main() {
-	dg, err := discordgo.New("Bot " + "MTE3NDg0MzU4Mjk4MTYxMTU2MA.G4ggaL.ym36lciEBQBo2DJK4tQZ44LrXY2oHkbB1cO63E")
+	token := os.Getenv("TOKEN")
+	dg, err := discordgo.New("Bot " + token)
 	if err != nil {
 		panic(err)
 	}
 	dg.Identify.Intents = discordgo.MakeIntent(discordgo.IntentsAllWithoutPrivileged | discordgo.IntentsGuildPresences | discordgo.IntentsGuildMembers | discordgo.IntentsGuildMessages | discordgo.IntentsGuildVoiceStates | discordgo.IntentMessageContent | discordgo.IntentsGuilds)
 
-	// query := "u1V8YRJnr4Q"
-	// guild := "myGuild"
-	// chanId := "myChannel"
-	// query = "https://www.youtube.com/watch?v=-GEHyAfV4OI&list=PLDBVggJyVNfvUfBgBlrRTnjON0BXcAjpf"
 	p := &disgo.Player{
 		DiscordSession: dg,
 	}
@@ -33,7 +31,7 @@ func main() {
 	p.Init()
 	bot.SetupEventHandlers(p)
 
-	commandHandler = bot.NewCommandManager("&", p)
+	commandHandler = bot.NewCommandManager("!", p)
 	registerCommands()
 	dg.AddHandler(commandHandler.HandleMessage)
 	dg.AddHandler(commandHandler.HandleInteraction)
