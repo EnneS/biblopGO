@@ -4,7 +4,7 @@ go 1.21.4
 
 require (
 	github.com/bwmarrin/discordgo v0.27.1
-	github.com/ennes/disgo v1.0.0
+	github.com/ennes/disgo v1.0.1
 )
 
 require (
