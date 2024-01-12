@@ -31,14 +31,20 @@ func SetupEventHandlers(p *disgo.Player) {
 				&discordgo.ActionsRow{
 					Components: []discordgo.MessageComponent{
 						&discordgo.Button{
-							Label:    "⏭",
+							Label:    "Skip",
 							Style:    discordgo.PrimaryButton,
 							CustomID: "skip",
+							Emoji: discordgo.ComponentEmoji{
+								Name: "⏭",
+							},
 						},
 						&discordgo.Button{
-							Label:    "⏹",
+							Label:    "Stop",
 							Style:    discordgo.DangerButton,
 							CustomID: "stop",
+							Emoji: discordgo.ComponentEmoji{
+								Name: "⏹",
+							},
 						},
 					},
 				},
